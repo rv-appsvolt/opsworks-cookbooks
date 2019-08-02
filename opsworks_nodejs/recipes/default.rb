@@ -17,3 +17,4 @@ execute "apt-get update"
 Chef::Log.info("Stage 3")
 execute "apt-get install nodejs"
 Chef::Log.info("Stage 4")
+execute "apt-get install git-core"

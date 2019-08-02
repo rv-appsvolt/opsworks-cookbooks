@@ -15,5 +15,5 @@ execute "curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -"
 Chef::Log.info("Stage 2")
 execute "apt-get update"
 Chef::Log.info("Stage 3")
-execute "sudo apt-get install nodejs"
+execute "apt-get install nodejs"
 Chef::Log.info("Stage 4")

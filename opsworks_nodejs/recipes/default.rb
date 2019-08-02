@@ -9,11 +9,11 @@ current_package_info = pm_helper.summary(PACKAGE_BASENAME)
 
 
 Chef::Log.info("JP_ Ready to roll")
-execute "apt-get install curl python-software-properties"
+#execute "apt-get install curl python-software-properties"
 Chef::Log.info("Stage 1")
 execute "curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -"
-Chef::Log.info("Stage 1")
+Chef::Log.info("Stage 2")
 execute "apt-get update"
-Chef::Log.info("Stage 1")
+Chef::Log.info("Stage 3")
 execute "sudo apt-get install nodejs"
-Chef::Log.info("Stage 1")
+Chef::Log.info("Stage 4")

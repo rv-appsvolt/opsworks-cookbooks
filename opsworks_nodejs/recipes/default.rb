@@ -7,12 +7,13 @@ LECAGY_PACKAGES = []
 pm_helper = OpsWorks::PackageManagerHelper.new(node)
 current_package_info = pm_helper.summary(PACKAGE_BASENAME)
 
-Chef::Log.info("Userspace jp APT_GET UPDATE")
-execute "apt-get update"
-Chef::Log.info("Userspace jp APT_GET UPDATE")
-package "nodejs"
-package "npm"
-package "nodejs-legacy"
 
-Chef::Log.info("Ready to install")
-execute "npm install express -g"
+Chef::Log.info("JP_ Ready to roll")
+execute "apt-get install curl python-software-properties"
+Chef::Log.info("Stage 1")
+execute "curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -"
+Chef::Log.info("Stage 1")
+execute "apt-get update"
+Chef::Log.info("Stage 1")
+execute "sudo apt-get install nodejs"
+Chef::Log.info("Stage 1")

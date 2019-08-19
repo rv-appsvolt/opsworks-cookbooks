@@ -4,14 +4,20 @@ Chef::Log.info("Setting environment variables for current process")
 
 Chef::Log.info("Setting environment variables for current process")
 Chef::Log.info("JP- Node Env----")
+
 # Chef::Log.info(node[:environment_variables])
 # Chef::Log.info(node[:deploy][APP_SHORTNAME][:environment_variables])
-Chef::Log.info(node[:deploy][@app][:environment_variables])
-Chef::Log.info("JP- Node END")
+ Chef::Log.info(node[:deploy][:environment_variables])
 
-node[:environment_variables].each do |name, value|
-	ENV["#{name}"] = "#{value}"
+
+node[:deploy].each do |current_path, deploy, environment_variables|
+	Chef::Log.info("#{environment_variables}")
+	Chef::Log.info(node[:environment_variables])
+	node[:environment_variables].each do |name, value|
+		ENV["#{name}"] = "#{value}"
+	end
 end
+Chef::Log.info("JP- Node END")
 
 Chef::Log.info("Writing variables to /etc/environment to have them after restart")
 template "/etc/environment" do

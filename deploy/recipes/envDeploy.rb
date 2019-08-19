@@ -4,7 +4,7 @@ Chef::Log.info("Setting environment variables for current process")
 
 Chef::Log.info("Setting environment variables for current process")
 Chef::Log.info("JP- Node Env----")
-Chef::Log.info(node[:environment_variables])
+# Chef::Log.info(node[:environment_variables])
 # Chef::Log.info(node[:deploy][APP_SHORTNAME][:environment_variables])
 Chef::Log.info(node[:deploy][@app][:environment_variables])
 Chef::Log.info("JP- Node END")

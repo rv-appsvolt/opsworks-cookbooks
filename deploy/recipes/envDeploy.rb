@@ -7,7 +7,7 @@ Chef::Log.info("JP- Node Env----")
 
 # Chef::Log.info(node[:environment_variables])
 # Chef::Log.info(node[:deploy][APP_SHORTNAME][:environment_variables])
- Chef::Log.info(deploy[:environment_variables])
+# Chef::Log.info(deploy[:environment_variables])
 
 
 node[:deploy].each do |current_path, deploy, environment_variables|

@@ -1,8 +1,8 @@
 #!/bin/sh
 
 echo "TempFile"
-echo node[:environment_variables]
-echo deploy[:environment_variables]
+echo <% node[:environment_variables] %>
+echo <% deploy[:environment_variables] %>
 # <% deploy[:environment_variables].each do |name,value| -%>
 # export <%= name %>=<%= value %>
 # <% end -%>

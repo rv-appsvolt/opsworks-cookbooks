@@ -21,7 +21,7 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	template "/etc/environment" do
 		source "environment.erb"
 		mode "0644"
-		owner "root"
+		owner "ubuntu"
 		group "root"
 		variables({
 			:environment_variables => deploy[:environment_variables]
@@ -32,13 +32,13 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	template "/usr/local/bin/environment.sh" do
 		source "environment.sh.erb"
 		mode "0755"
-		owner "root"
+		owner "ubuntu"
 		group "root"
 	end
 
 	Chef::Log.info("Exporting variables for every new created process")
 	execute "/usr/local/bin/environment.sh" do
-		user "root"
+		user "ubuntu"
 		action :run
 	end
 

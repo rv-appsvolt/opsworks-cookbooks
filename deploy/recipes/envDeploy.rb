@@ -22,7 +22,7 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 		source "environment.erb"
 		mode "0644"
 		owner "ubuntu"
-		group "root"
+		group "ubuntu"
 		variables({
 			:environment_variables => deploy[:environment_variables]
 		})
@@ -33,7 +33,7 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 		source "environment.sh.erb"
 		mode "0755"
 		owner "ubuntu"
-		group "root"
+		group "ubuntu"
 	end
 
 	Chef::Log.info("Exporting variables for every new created process")

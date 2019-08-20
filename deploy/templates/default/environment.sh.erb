@@ -9,5 +9,5 @@
 # <% end -%>
 
 <% @environment_variables.each do |name,value| -%>
-<%= name %>=<%= value %>
+export <%= name %>=<%= value %>
 <% end -%>

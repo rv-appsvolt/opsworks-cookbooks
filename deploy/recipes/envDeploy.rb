@@ -18,7 +18,7 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	end
 
 	Chef::Log.info("Writing variables to /etc/environment to have them after restart")
-	template "/etc/environment" do
+	template "#{deploy[:current_path]}/.env" do
 		source "environment.erb"
 		mode "0644"
 		owner "ubuntu"
@@ -27,23 +27,5 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 			:environment_variables => deploy[:environment_variables]
 		})
 	end
-
-	Chef::Log.info("Creating shell file to export variables")
-	template "/usr/local/bin/environment.sh" do
-		source "environment.sh.erb"
-		mode "0755"
-		owner "ubuntu"
-		group "ubuntu"
-		variables({
-			:environment_variables => deploy[:environment_variables]
-		})
-	end
-
-	Chef::Log.info("Exporting variables for every new created process")
-	execute "/usr/local/bin/environment.sh" do
-		user "ubuntu"
-		action :run
-	end
-
 end
 Chef::Log.info("JP- Node END")

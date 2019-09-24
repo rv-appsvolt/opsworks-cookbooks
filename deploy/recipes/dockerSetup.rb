@@ -27,6 +27,6 @@ execute("sudo apt-get install apt-transport-https ca-certificates curl software-
 execute("curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -")
 execute("sudo apt-key fingerprint 0EBFCD88")
 execute("sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable'")
-execute("sudo apt-get update")
+#execute("sudo apt-get update")
 execute("sudo apt-get install docker-ce")
 execute("sudo docker -v")

@@ -20,7 +20,7 @@ Chef::Log.info("Ready to Deploy")
 #Chef::Log.info("sudo usermod -aG docker $USER")
 #execute("sudo apt install apt-transport-https ca-certificates curl software-properties-common &")
 
-execute("sudo apt-get remove docker docker-engine docker.io")
+#execute("sudo apt-get remove docker docker-engine docker.io")
 execute("sudo apt-get update")
 #execute("sudo apt-get install apt-transport-https ca-certificates curl software-properties-common")
 execute("sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common")

@@ -13,7 +13,7 @@ Chef::Log.info("sudo add-apt-repository")
 execute("sudo apt-get autoclean")
 execute("sudo apt-get autoremove")
 
-execute("sudo apt-get install -f")
+execute("sudo add-apt-repository ppa:ubuntu-audio-dev/ppa")
 execute("sudo apt-get update")
 Chef::Log.info("sudo apt update")
 execute("sudo apt install docker-ce")

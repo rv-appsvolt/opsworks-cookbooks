@@ -19,9 +19,8 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 
 	Chef::Log.info("Writing variables to /etc/environment/prisma to have them after restart")
 	Chef::Log.info(deploy[:current_path])
-	execute("mkdir /srv/www/prisma")
+	#execute("mkdir /srv/www/prisma")
 	template "srv/www/prisma/.env" do
-	#template ".env" do
 		source "environment.erb"
 		mode "0644"
 		owner "ubuntu"
@@ -31,9 +30,7 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 		})
 	end
 	
-	#execute("mkdir /srv/www/prisma")
 	template "#{deploy[:current_path]}/.env" do
-	#template ".env" do
 		source "environment.erb"
 		mode "0644"
 		owner "ubuntu"

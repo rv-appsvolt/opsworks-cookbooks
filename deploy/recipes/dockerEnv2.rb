@@ -22,7 +22,7 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	Chef::Log.info("ha ha")
 	Chef::Log.info(File.directory?('/srv/www/serversetup_demo/current'))
 	if(File.directory?('/srv/www/serversetup_demo/current')) 
-	     template "srv/www/serversetup_demo/current/.env" do
+	     template "/srv/www/serversetup_demo/current/.env" do
                 source "environment.erb"
                 mode "0644"
                 owner "ubuntu"

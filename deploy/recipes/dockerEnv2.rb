@@ -22,6 +22,7 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	Chef::Log.info("ha ha")
 	Chef::Log.info(File.directory?('/srv/www/serversetup_demo/current'))
 	if(File.directory?('/srv/www/serversetup_demo/current')) 
+	     Chef::Log.info("if")
 	     template "/srv/www/serversetup_demo/current/.env" do
                 source "environment.erb"
                 mode "0644"
@@ -30,6 +31,8 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 		variables({
 		  :environment_variables => deploy[:environment_variables]
 		})
+	 else	
+		Chef::Log.info("else")     
     	  end
 	end
 	

@@ -30,5 +30,17 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 			:environment_variables => deploy[:environment_variables]
 		})
 	end
+	
+	#execute("mkdir /srv/www/prisma")
+	template "#{deploy[:current_path]}/.env" do
+	#template ".env" do
+		source "environment.erb"
+		mode "0644"
+		owner "ubuntu"
+		group "ubuntu"
+		variables({
+			:environment_variables => deploy[:environment_variables]
+		})
+	end
 end
 Chef::Log.info("JP- Node END")

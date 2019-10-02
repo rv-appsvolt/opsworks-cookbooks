@@ -19,7 +19,10 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 
 	Chef::Log.info("Writing variables to /etc/environment/prisma to have them after restart")
 	Chef::Log.info(deploy[:current_path])
-	#execute("mkdir /srv/www/prisma")
+	if(File.directory?('/srv/www/prisma')) 
+	     Chef::Log.info("folder exists")
+	else 
+	     execute("mkdir /srv/www/prisma")
 	template "srv/www/prisma/.env" do
 		source "environment.erb"
 		mode "0644"

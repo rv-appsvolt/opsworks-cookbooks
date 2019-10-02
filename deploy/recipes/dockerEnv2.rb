@@ -31,11 +31,10 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 		variables({
 		  :environment_variables => deploy[:environment_variables]
 		})
+	     end
 	 else	
 		Chef::Log.info("else")     
-    	  end
-	end
-	
-	
+    	 end
+
 end
 Chef::Log.info("JP- Node END")

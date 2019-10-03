@@ -35,7 +35,7 @@ execute("sudo wget -qO- https://get.docker.com/ | sh")
 #execute("sudo curl -L 'https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)' -o /usr/local/bin/docker-compose")
 execute("sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose")
 execute("sudo chmod +x /usr/local/bin/docker-compose")
-execute("apt install docker-ce=18.06.1~ce~3-0~ubuntu")
+execute("sudo apt install docker-ce=18.06.1~ce~3-0~ubuntu")
 execute("sudo npm install -g prisma")
 execute(" sudo npm install -g dotenv")
 

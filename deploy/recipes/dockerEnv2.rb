@@ -21,6 +21,11 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	Chef::Log.info(deploy[:current_path])
 	Chef::Log.info("ha ha")
 	Chef::Log.info(File.directory?('/srv/www/serversetup_demo/current'))
+	if(File.directory?({deploy[:current_path]})) 
+		Chef::Log.info("directory available");
+	else
+		Chef::Log.info("directory not available");
+	end
 	if(File.directory?('/srv/www/serversetup_demo/current')) 
 	     Chef::Log.info("if")
 	     #template "/srv/www/serversetup_demo/current/.env" do
@@ -33,8 +38,8 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 		  :environment_variables => deploy[:environment_variables]
 		})
 	     end
-	     execute("sudo mkdir #{deploy[:current_path]}/src")
-	     execute("sudo mkdir #{deploy[:current_path]}/src/generated")
+	     #execute("sudo mkdir #{deploy[:current_path]}/src")
+	     #execute("sudo mkdir #{deploy[:current_path]}/src/generated")
 	     execute("cd #{deploy[:current_path]} && prisma deploy --force")
 	     Chef::Log.info("prisma deploy")
 	     #execute("cd #{deploy[:current_path]} && sudo docker-compose stop")

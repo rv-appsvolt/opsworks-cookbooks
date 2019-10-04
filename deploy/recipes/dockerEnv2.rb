@@ -21,10 +21,10 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	Chef::Log.info(deploy[:current_path])
 	Chef::Log.info("ha ha")
 	Chef::Log.info(File.directory?('/srv/www/serversetup_demo/current'))
-	if(File.directory?({deploy[:current_path]})) 
-		Chef::Log.info("directory available");
+	if(File.directory?(deploy[:current_path]))
+		Chef::Log.info("directory available")
 	else
-		Chef::Log.info("directory not available");
+		Chef::Log.info("directory not available")
 	end
 	if(File.directory?('/srv/www/serversetup_demo/current')) 
 	     Chef::Log.info("if")

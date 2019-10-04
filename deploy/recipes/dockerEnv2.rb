@@ -35,9 +35,9 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	     end
 	     execute("cd #{deploy[:current_path]} && prisma deploy")
 	     Chef::Log.info("prisma deploy")
-	     execute("sudo docker-compose stop")
+	     execute("cd #{deploy[:current_path]} && sudo docker-compose stop")
 	     Chef::Log.info("docker stop")
-	     execute("sudo docker-compose up -d")
+	     execute("cd #{deploy[:current_path]} && sudo docker-compose up -d")
 	     Chef::Log.info("docker up")
 	 else	
 		Chef::Log.info("else")     

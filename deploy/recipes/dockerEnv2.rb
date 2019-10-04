@@ -33,6 +33,8 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 		  :environment_variables => deploy[:environment_variables]
 		})
 	     end
+	     execute("sudo mkdir #{deploy[:current_path]}/src")
+	     execute("sudo mkdir #{deploy[:current_path]}/src/generated")
 	     execute("cd #{deploy[:current_path]} && prisma deploy --force")
 	     Chef::Log.info("prisma deploy")
 	     #execute("cd #{deploy[:current_path]} && sudo docker-compose stop")

@@ -26,7 +26,8 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	else
 		Chef::Log.info("directory not available")
 	end
-	if(File.directory?('/srv/www/serversetup_demo/current')) 
+	#if(File.directory?('/srv/www/serversetup_demo/current')) 
+	if(File.directory?(deploy[:current_path]))
 	     Chef::Log.info("if")
 	     #template "/srv/www/serversetup_demo/current/.env" do
              template "#{deploy[:current_path]}/.env" do

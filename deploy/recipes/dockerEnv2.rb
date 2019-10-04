@@ -34,8 +34,11 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 		})
 	     end
 	     execute("prisma deploy")
+	     Chef::Log.info("prisma deploy")
 	     execute("sudo docker-compose stop")
+	     Chef::Log.info("docker stop")
 	     execute("sudo docker-compose up -d")
+	     Chef::Log.info("docker up")
 	 else	
 		Chef::Log.info("else")     
     	 end

@@ -43,6 +43,15 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	     #Chef::Log.info("docker up")
 	     #execute("sudo mkdir #{deploy[:current_path]}/src")
 	     #execute("sudo mkdir #{deploy[:current_path]}/src/generated")
+	     IS_RUNNING=execute("sudo docker ps -q")
+	     Chef::Log.info("docker checking")
+	     Chef::Log.info(IS_RUNNING)
+	     if(execute("sudo docker ps -q") != '')
+		Chef::Log.info("docker running")  
+	     else
+		Chef::Log.info("docker starting")  
+		execute("cd #{deploy[:current_path]} && sudo docker-compose up -d")
+	     end
 	     execute("cd #{deploy[:current_path]} && prisma deploy --force")
 	     Chef::Log.info("prisma deploy")
 	     #execute("cd #{deploy[:current_path]} && sudo docker-compose stop")

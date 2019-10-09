@@ -43,9 +43,9 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	     #Chef::Log.info("docker up")
 	     #execute("sudo mkdir #{deploy[:current_path]}/src")
 	     #execute("sudo mkdir #{deploy[:current_path]}/src/generated")
-	     #IS_RUNNING=execute("sudo docker ps -q")
-	     #Chef::Log.info("docker checking")
-	     #Chef::Log.info(IS_RUNNING)
+	     IS_RUNNING= `sudo docker ps -q`
+	     Chef::Log.info("docker checking")
+	     Chef::Log.info(IS_RUNNING)
 	     #if(IS_RUNNING == '')
 		#Chef::Log.info("no docker")  
 	     #else

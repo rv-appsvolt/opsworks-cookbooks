@@ -54,10 +54,11 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 		
 	     else
 		Chef::Log.info("docker exist")  
+		Chef::Log.info("start prisma deploy")
+	        execute("cd #{deploy[:current_path]} && sudo prisma deploy")
+	        Chef::Log.info("prisma deploy")     
 	     end
-	     Chef::Log.info("start prisma deploy")
-	     execute("cd #{deploy[:current_path]} && sudo prisma deploy")
-	     Chef::Log.info("prisma deploy")
+	     
 	    
 	 else	
 		Chef::Log.info("else")     

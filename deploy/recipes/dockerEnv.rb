@@ -20,21 +20,47 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	Chef::Log.info("Writing variables to /etc/environment/prisma to have them after restart")
 	Chef::Log.info(deploy[:current_path])
 	Chef::Log.info("ha ha")
-	Chef::Log.info(File.directory?('/srv/www/prisma'))
-	if(File.directory?('/srv/www/prisma')) 
-	     Chef::Log.info("folder exists")
-	else 
-	     execute("mkdir /srv/www/prisma")
+	Chef::Log.info(File.directory?('/srv/www/serversetup_demo/current'))
+	if(File.directory?(deploy[:current_path]))
+		Chef::Log.info("directory available")
+	else
+		Chef::Log.info("directory not available")
 	end
-	template "srv/www/prisma/.env" do
-		source "environment.erb"
-		mode "0644"
-		owner "ubuntu"
-		group "ubuntu"
+	#if(File.directory?('/srv/www/serversetup_demo/current')) 
+	if(File.directory?(deploy[:current_path]))
+	     Chef::Log.info("if")
+	     #template "/srv/www/serversetup_demo/current/.env" do
+             template "#{deploy[:current_path]}/.env" do
+                source "environment.erb"
+                mode "0644"
+                owner "ubuntu"
+                group "ubuntu"
 		variables({
-			:environment_variables => deploy[:environment_variables]
+		  :environment_variables => deploy[:environment_variables]
 		})
-	end
-	
+	     end
+	     #execute("cd #{deploy[:current_path]} && sudo docker-compose up -d")
+	     #Chef::Log.info("docker up")
+	     #execute("sudo mkdir #{deploy[:current_path]}/src")
+	     #execute("sudo mkdir #{deploy[:current_path]}/src/generated")
+	     IS_RUNNING=execute("sudo docker ps -q")
+	     Chef::Log.info("docker checking")
+	     Chef::Log.info(IS_RUNNING)
+	     if(execute("sudo docker ps -q") != '')
+		Chef::Log.info("docker running")  
+	     else
+		Chef::Log.info("docker starting")  
+		execute("cd #{deploy[:current_path]} && sudo docker-compose up -d")
+	     end
+	     execute("cd #{deploy[:current_path]} && prisma deploy --force")
+	     Chef::Log.info("prisma deploy")
+	     #execute("cd #{deploy[:current_path]} && sudo docker-compose stop")
+	     #Chef::Log.info("docker stop")
+	     #execute("cd #{deploy[:current_path]} && sudo docker-compose up -d")
+	     #Chef::Log.info("docker up")
+	 else	
+		Chef::Log.info("else")     
+    	 end
+
 end
 Chef::Log.info("JP- Node END")

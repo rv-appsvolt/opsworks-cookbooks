@@ -50,16 +50,14 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 		Chef::Log.info("no docker")  
 		execute("cd #{deploy[:current_path]} && sudo docker-compose up -d")
 		Chef::Log.info("waiting")
-		sleep(40)
+		sleep(150)
 		sleep 20     
 	     else
 		Chef::Log.info("docker exist")  
-		#execute("cd #{deploy[:current_path]} && sudo docker stop $(sudo docker ps -q)")
-		#execute("cd #{deploy[:current_path]} && sudo docker-compose up -d")
 	     end
-	     #Chef::Log.info("start prisma deploy")
-	     #execute("cd #{deploy[:current_path]} && prisma deploy --force")
-	     #Chef::Log.info("prisma deploy")
+	     Chef::Log.info("start prisma deploy")
+	     execute("cd #{deploy[:current_path]} && prisma deploy")
+	     Chef::Log.info("prisma deploy")
 	    
 	 else	
 		Chef::Log.info("else")     

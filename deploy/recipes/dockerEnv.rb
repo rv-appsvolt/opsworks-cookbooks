@@ -46,13 +46,14 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	     IS_RUNNING= `sudo docker ps -q`
 	     Chef::Log.info("docker checking")
 	     Chef::Log.info(IS_RUNNING)
-	     #if(IS_RUNNING == '')
-		#Chef::Log.info("no docker")  
-	     #else
-		#Chef::Log.info("docker exist")  
-		execute("cd #{deploy[:current_path]} && sudo docker stop $(sudo docker ps -q)")
+	     if(IS_RUNNING == '')
+		Chef::Log.info("no docker")  
 		execute("cd #{deploy[:current_path]} && sudo docker-compose up -d")
-	     #end
+	     else
+		Chef::Log.info("docker exist")  
+		#execute("cd #{deploy[:current_path]} && sudo docker stop $(sudo docker ps -q)")
+		#execute("cd #{deploy[:current_path]} && sudo docker-compose up -d")
+	     end
 	     #execute("cd #{deploy[:current_path]} && prisma deploy --force")
 	     Chef::Log.info("prisma deploy")
 	     #execute("cd #{deploy[:current_path]} && sudo docker-compose stop")

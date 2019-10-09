@@ -49,7 +49,8 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	     if(IS_RUNNING == '')
 		Chef::Log.info("no docker")  
 		execute("cd #{deploy[:current_path]} && sudo docker-compose up -d")
-		sleep 20
+		Chef::Log.info("waiting")
+		sleep(20)
 	     else
 		Chef::Log.info("docker exist")  
 		#execute("cd #{deploy[:current_path]} && sudo docker stop $(sudo docker ps -q)")

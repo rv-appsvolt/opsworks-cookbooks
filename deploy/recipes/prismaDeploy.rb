@@ -9,8 +9,8 @@ node[:deploy].each do |current_path, deploy, environment_variables|
 	end
 
 	Chef::Log.info("Writing variables to ./env file")
-	#if(File.directory?('/srv/www/serversetup_demo/current')) 
-	if(File.directory?(deploy[:current_path]))
+	if(File.directory?('/srv/www/prismasetup_demo/current')) 
+	#if(File.directory?(deploy[:current_path]))
 	     Chef::Log.info("directory available")
 	     template "#{deploy[:current_path]}/.env" do
                 source "environment.erb"
